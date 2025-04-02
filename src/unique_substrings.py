@@ -21,16 +21,20 @@ def find_unique_substrings(s: str) -> list[str]:
     if not isinstance(s, str):
         raise TypeError("Input must be a string")
     
-    # Use a set to track unique substrings while preserving order
+    # Track unique substrings while preserving order
     unique_substrings = []
     seen = set()
     
-    # Generate all possible substrings
-    for i in range(len(s)):
-        for j in range(i + 1, len(s) + 1):
-            substring = s[i:j]
-            
-            # Add substring if not already seen
+    # First pass: single characters
+    for char in s:
+        if char not in seen:
+            unique_substrings.append(char)
+            seen.add(char)
+    
+    # Second pass: multiple length substrings
+    for length in range(2, len(s) + 1):
+        for i in range(len(s) - length + 1):
+            substring = s[i:i+length]
             if substring not in seen:
                 unique_substrings.append(substring)
                 seen.add(substring)
