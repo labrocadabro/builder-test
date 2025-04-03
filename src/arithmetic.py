@@ -103,4 +103,6 @@ def modulo(a, b):
         raise TypeError("Both arguments must be numbers")
     if b == 0:
         raise ZeroDivisionError("Cannot calculate modulo with zero")
-    return a - (b * (a // b))
+    
+    # Use the definition of modulo that matches the expected behavior
+    return a - (b * int(a / b))
