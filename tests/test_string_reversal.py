@@ -22,6 +22,14 @@ def test_string_with_special_characters():
     """Test reversal of string with special characters."""
     assert reverse_string("a1b2c3!@#") == "#@!3c2b1a"
 
+def test_palindrome():
+    """Test reversal of palindrome."""
+    assert reverse_string("racecar") == "racecar"
+
+def test_mixed_case():
+    """Test reversal of mixed case string."""
+    assert reverse_string("HeLLo") == "oLLeH"
+
 def test_invalid_input_type():
     """Test that TypeError is raised for non-string inputs."""
     with pytest.raises(TypeError, match="Input must be a string"):
