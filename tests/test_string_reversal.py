@@ -21,6 +21,11 @@ def test_reverse_string_with_spaces():
 def test_reverse_string_with_special_chars():
     """Test reversal of string with special characters."""
     assert reverse_string("a!b@c#") == "#c@b!a"
+    assert reverse_string("123 456!") == "!654 321"
+
+def test_reverse_string_with_mixed_chars():
+    """Test reversal of string with mixed character types."""
+    assert reverse_string("a1b2c3") == "3c2b1a"
 
 def test_reverse_string_error_handling():
     """Test that non-string inputs raise a TypeError."""
