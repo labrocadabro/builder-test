@@ -42,4 +42,4 @@ def test_prime_factorization_very_large_prime():
 def test_prime_factorization_multiple_large_factors():
     """Test a number with multiple large prime factors."""
     large_composite = 104730  # A number with multiple large prime factors
-    assert sorted(prime_factorization(large_composite)) == [2, 3, 17489]
+    assert sorted(prime_factorization(large_composite)) == [2, 3, 5, 3491]
