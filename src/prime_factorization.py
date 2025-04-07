@@ -31,11 +31,10 @@ def prime_factorization(n):
     # Check for odd prime factors
     factor = 3
     while factor * factor <= n:
-        if n % factor == 0:
+        while n % factor == 0:
             factors.append(factor)
             n = n // factor
-        else:
-            factor += 2
+        factor += 2
     
     # If n is a prime number greater than 2
     if n > 2:
