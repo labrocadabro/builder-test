@@ -54,7 +54,7 @@ class Fraction:
         if whole_number == 0:
             return f"{self.numerator}/{self.denominator}"
         
-        return f"{whole_number} {abs(remainder)}/{self.denominator}" if whole_number > 0 else f"-{whole_number} {abs(remainder)}/{self.denominator}"
+        return f"{'-' if self.numerator < 0 else ''}{whole_number} {abs(remainder)}/{self.denominator}"
     
     def __repr__(self) -> str:
         """
@@ -85,18 +85,17 @@ class Fraction:
         except ValueError:
             pass
         
+        # Handle mixed numbers
+        parts = fraction_str.split()
+        if len(parts) == 2:
+            whole_number = int(parts[0])
+            num, denom = map(int, parts[1].split('/'))
+            return cls(num, denom, whole_number)
+        
         # Handle standard fractions
         parts = fraction_str.split('/')
         if len(parts) == 2:
             return cls(int(parts[0]), int(parts[1]))
-        
-        # Handle mixed numbers
-        parts = fraction_str.split()
-        if len(parts) == 2:
-            # Whole number with fraction
-            whole_number = int(parts[0])
-            num, denom = map(int, parts[1].split('/'))
-            return cls(num, denom, whole_number)
         
         raise ValueError(f"Cannot parse fraction from '{fraction_str}'")
     
