@@ -3,7 +3,7 @@ def prime_factorization(n):
     Compute the prime factorization of a given positive integer.
     
     Args:
-        n (int): A positive integer to factorize.
+        n (int or float): A positive number to factorize.
     
     Returns:
         list: A list of prime factors in ascending order.
@@ -11,6 +11,13 @@ def prime_factorization(n):
     Raises:
         ValueError: If the input is not a positive integer.
     """
+    # Convert float to int if it's a whole number
+    if isinstance(n, float):
+        if n.is_integer():
+            n = int(n)
+        else:
+            raise ValueError("Input must be a whole number")
+    
     # Validate input
     if not isinstance(n, int):
         raise ValueError("Input must be an integer")
