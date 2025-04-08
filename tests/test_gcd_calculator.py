@@ -47,4 +47,4 @@ def test_gcd_error_handling():
 def test_gcd_large_numbers():
     """Test GCD for larger numbers"""
     assert gcd_using_prime_factors(1071, 462) == 21
-    assert gcd_using_prime_factors(1989, 867) == 159
+    assert gcd_using_prime_factors(1989, 867) == 51  # Corrected to match actual GCD
