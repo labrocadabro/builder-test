@@ -14,15 +14,21 @@ def lcm_using_gcd(a: int, b: int) -> int:
         int: The Least Common Multiple of a and b
     
     Raises:
-        ValueError: If either input is less than or equal to 0
+        ValueError: If either input is less than 0
     """
     # Validate inputs
-    if a <= 0 or b <= 0:
-        raise ValueError("Inputs must be positive integers")
+    if a < 0 or b < 0:
+        raise ValueError("Inputs must be non-negative integers")
     
-    # If either input is 0, LCM is 0
+    # Special cases
     if a == 0 or b == 0:
         return 0
+    
+    if a == 1:
+        return b
+    
+    if b == 1:
+        return a
     
     # Calculate LCM using the formula: LCM(a, b) = |a * b| / GCD(a, b)
     gcd = gcd_using_prime_factors(a, b)
