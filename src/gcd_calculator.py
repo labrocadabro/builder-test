@@ -47,3 +47,6 @@ def gcd_using_prime_factors(a: int, b: int) -> int:
         gcd *= factor
     
     return gcd
+
+# Alias to make function more accessible
+gcd = gcd_using_prime_factors
