@@ -27,7 +27,7 @@ class Fraction:
             raise ValueError("Denominator cannot be zero")
         
         # Handle sign and convert to improper fraction
-        sign = 1 if (whole >= 0 and numerator >= 0) or (whole <= 0 and numerator <= 0) else -1
+        sign = -1 if (whole < 0) ^ (numerator < 0) else 1
         
         total_numerator = abs(whole) * abs(denominator) + abs(numerator)
         total_numerator *= sign
