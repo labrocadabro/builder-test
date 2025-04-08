@@ -3,36 +3,39 @@ from src.lcm_calculator import lcm_using_gcd
 
 class Fraction:
     """
-    Comprehensive Fraction class supporting various mathematical operations.
-    Handles mixed numbers, improper fractions, and provides robust arithmetic.
+    A comprehensive fraction class supporting various mathematical operations
+    and representations.
     """
     
     def __init__(self, numerator: int, denominator: int = 1, whole: int = 0):
         """
-        Initialize a Fraction, supporting whole numbers and mixed number formats.
+        Initialize a Fraction with support for mixed numbers.
         
         Args:
-            numerator (int): Numerator of the fraction part
-            denominator (int, optional): Denominator of the fraction part. Defaults to 1.
+            numerator (int): Numerator of the fractional part
+            denominator (int, optional): Denominator of the fractional part. Defaults to 1.
             whole (int, optional): Whole number part. Defaults to 0.
         
         Raises:
-            ValueError: For invalid fraction or zero denominator
-            TypeError: For non-integer inputs
+            TypeError: If inputs are not integers
+            ValueError: If denominator is zero
         """
+        # Validate input types
         if not all(isinstance(x, int) for x in [numerator, denominator, whole]):
             raise TypeError("All inputs must be integers")
         
+        # Check for zero denominator
         if denominator == 0:
             raise ValueError("Denominator cannot be zero")
         
-        # Handle sign and convert to improper fraction
+        # Determine sign
         sign = -1 if (whole < 0) ^ (numerator < 0) else 1
         
+        # Convert to improper fraction
         total_numerator = abs(whole) * abs(denominator) + abs(numerator)
         total_numerator *= sign
         
-        # Simplify the fraction
+        # Simplify fraction
         self.numerator, self.denominator = simplify_fraction(total_numerator, abs(denominator))
     
     @classmethod
@@ -42,7 +45,7 @@ class Fraction:
         
         Args:
             decimal (float): Decimal number to convert
-            max_denominator (int, optional): Maximum denominator to use. Defaults to 1000.
+            max_denominator (int, optional): Maximum denominator. Defaults to 1000.
         
         Returns:
             Fraction: Fractional representation of the decimal
@@ -135,6 +138,14 @@ class Fraction:
         
         # Cross multiply to compare
         return self.numerator * other.denominator < other.numerator * self.denominator
+    
+    def __gt__(self, other) -> bool:
+        """Greater than comparison."""
+        if not isinstance(other, Fraction):
+            other = Fraction(other)
+        
+        # Cross multiply to compare
+        return self.numerator * other.denominator > other.numerator * self.denominator
     
     def to_mixed_number(self):
         """
