@@ -23,6 +23,10 @@ def simplify_fraction(numerator: int, denominator: int) -> str:
     if denominator == 0:
         raise ValueError("Denominator cannot be zero")
     
+    # Special case for zero numerator
+    if numerator == 0:
+        return "0/1"
+    
     # Handle sign normalization
     # Move negative sign to numerator if denominator is negative
     if denominator < 0:
