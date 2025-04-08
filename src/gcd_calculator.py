@@ -1,4 +1,17 @@
-from src.prime_factorization import prime_factorize
+from src.prime_factorization import prime_factorization
+from collections import Counter
+
+def prime_factorize(n: int) -> dict:
+    """
+    Convert prime factorization list to a dictionary of prime factors with their counts.
+    
+    Args:
+        n (int): A positive integer to factorize
+    
+    Returns:
+        dict: A dictionary with prime factors as keys and their counts as values
+    """
+    return dict(Counter(prime_factorization(n)))
 
 def gcd_prime_factors(a: int, b: int) -> int:
     """
