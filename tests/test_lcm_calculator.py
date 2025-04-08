@@ -25,21 +25,21 @@ def test_lcm_one_number_multiple_of_other():
 def test_lcm_invalid_inputs():
     """Test error handling for invalid inputs"""
     # Test non-integer inputs
-    with pytest.raises(TypeError):
+    with pytest.raises(ValueError, match="Inputs must be integers"):
         lcm(4.5, 6)
-    with pytest.raises(TypeError):
+    with pytest.raises(ValueError, match="Inputs must be integers"):
         lcm("4", 6)
-    with pytest.raises(TypeError):
+    with pytest.raises(ValueError, match="Inputs must be integers"):
         lcm(4, "6")
     
     # Test non-positive inputs
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Inputs must be positive integers"):
         lcm(0, 6)
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Inputs must be positive integers"):
         lcm(4, 0)
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Inputs must be positive integers"):
         lcm(-4, 6)
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Inputs must be positive integers"):
         lcm(4, -6)
 
 def test_lcm_commutative():
