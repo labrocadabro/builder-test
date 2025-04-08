@@ -58,7 +58,7 @@ def test_mixed_number_operations():
     f1 = Fraction(3, 4, 2)  # 2 3/4
     f2 = Fraction(1, 2)
     result = f1 + f2
-    assert result.numerator == 11
+    assert result.numerator == 13  # This is the actual result when adding fractions
     assert result.denominator == 4
 
 def test_to_mixed_number():
