@@ -21,11 +21,13 @@ def test_lcm_with_one():
     """Test LCM involving the number 1"""
     assert lcm_using_gcd(1, 5) == 5
     assert lcm_using_gcd(5, 1) == 5
+    assert lcm_using_gcd(1, 1) == 1
 
 def test_lcm_with_zero():
     """Test LCM with zero"""
     assert lcm_using_gcd(0, 5) == 0
     assert lcm_using_gcd(5, 0) == 0
+    assert lcm_using_gcd(0, 0) == 0
 
 def test_lcm_large_numbers():
     """Test LCM with larger numbers"""
