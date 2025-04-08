@@ -12,15 +12,14 @@ def is_prime(number):
     
     Raises:
         TypeError: If the input is not an integer.
-        ValueError: If the input is less than or equal to 0.
     """
     # Check input type
     if not isinstance(number, int):
         raise TypeError("Input must be an integer")
     
-    # Check for non-positive numbers
+    # 1 is not a prime number by definition
     if number <= 1:
-        raise ValueError("Input must be a positive integer greater than 1")
+        return False
     
     # Check for primality
     # Optimization: Only check up to the square root of the number
