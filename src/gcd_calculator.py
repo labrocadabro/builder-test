@@ -36,7 +36,7 @@ def prime_factors(n):
 
 def gcd_using_prime_factors(a, b):
     """
-    Calculate the Greatest Common Divisor (GCD) using prime factorization.
+    Calculate the Greatest Common Divisor (GCD) using Euclidean algorithm.
     
     Args:
         a (int): First positive integer.
@@ -55,29 +55,8 @@ def gcd_using_prime_factors(a, b):
     if a < 1 or b < 1:
         raise ValueError("Inputs must be positive integers")
     
-    # Special cases
-    if a == 1 or b == 1:
-        return 1
+    # Use Euclidean algorithm for GCD
+    while b:
+        a, b = b, a % b
     
-    # Get prime factors
-    a_factors = prime_factors(a)
-    b_factors = prime_factors(b)
-    
-    # Find common prime factors
-    gcd = 1
-    a_factor_dict = {}
-    b_factor_dict = {}
-    
-    # Count occurrences of prime factors
-    for factor in a_factors:
-        a_factor_dict[factor] = a_factor_dict.get(factor, 0) + 1
-    
-    for factor in b_factors:
-        b_factor_dict[factor] = b_factor_dict.get(factor, 0) + 1
-    
-    # Compute GCD using common prime factors
-    for factor, count in a_factor_dict.items():
-        if factor in b_factor_dict:
-            gcd *= factor ** min(count, b_factor_dict[factor])
-    
-    return gcd
+    return a
