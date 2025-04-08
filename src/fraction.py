@@ -1,5 +1,6 @@
 from src.fraction_simplifier import simplify_fraction
 from src.lcm_calculator import lcm_using_gcd
+import math
 
 class Fraction:
     """
@@ -29,7 +30,11 @@ class Fraction:
             raise ValueError("Denominator cannot be zero")
         
         # Determine sign
-        sign = -1 if (whole < 0) ^ (numerator < 0) else 1
+        sign = -1 if (
+            (whole < 0 and numerator == 0) or 
+            (whole == 0 and numerator < 0) or 
+            (whole < 0 and numerator > 0)
+        ) else 1
         
         # Convert to improper fraction
         total_numerator = abs(whole) * abs(denominator) + abs(numerator)
@@ -67,8 +72,8 @@ class Fraction:
         return self.numerator / self.denominator
     
     def __int__(self) -> int:
-        """Convert fraction to integer (floor division)."""
-        return self.numerator // self.denominator
+        """Convert fraction to integer (round towards zero)."""
+        return math.trunc(self.numerator / self.denominator)
     
     def __add__(self, other):
         """Add two fractions."""
