@@ -28,16 +28,17 @@ def simplify_fraction(numerator: int, denominator: int) -> tuple[int, int]:
         return 0, 1
     
     # Determine the sign
-    sign = 1
-    if numerator < 0 and denominator < 0:
-        numerator = abs(numerator)
-        denominator = abs(denominator)
-    elif denominator < 0:
-        sign = -1
+    # When both are negative, make them positive
+    # When denominator is negative, move the negative sign to numerator
+    if denominator < 0:
+        numerator = -numerator
         denominator = abs(denominator)
     
-    # Calculate the greatest common divisor
+    # Calculate the greatest common divisor of absolute values
     divisor = gcd(abs(numerator), abs(denominator))
     
     # Simplify the fraction
-    return sign * (abs(numerator) // divisor), abs(denominator) // divisor
+    simplified_numerator = numerator // divisor
+    simplified_denominator = denominator // divisor
+    
+    return simplified_numerator, simplified_denominator
