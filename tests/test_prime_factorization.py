@@ -2,16 +2,16 @@ import pytest
 from src.prime_factorization import prime_factorization
 
 def test_prime_factorization_prime_number():
-    assert prime_factorization(17) == [17]
+    assert prime_factorization(17) == {17: 1}
 
 def test_prime_factorization_composite_number():
-    assert prime_factorization(24) == [2, 2, 2, 3]
+    assert prime_factorization(24) == {2: 3, 3: 1}
 
 def test_prime_factorization_large_number():
-    assert prime_factorization(84) == [2, 2, 3, 7]
+    assert prime_factorization(84) == {2: 2, 3: 1, 7: 1}
 
 def test_prime_factorization_perfect_square():
-    assert prime_factorization(36) == [2, 2, 3, 3]
+    assert prime_factorization(36) == {2: 2, 3: 2}
 
 def test_prime_factorization_invalid_input_less_than_two():
     with pytest.raises(ValueError, match="Input must be greater than or equal to 2"):
