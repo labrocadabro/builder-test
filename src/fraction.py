@@ -29,16 +29,17 @@ class Fraction:
         if denominator == 0:
             raise ValueError("Denominator cannot be zero")
         
-        # Determine sign
-        sign = -1 if (
-            (whole < 0 and numerator == 0) or 
-            (whole == 0 and numerator < 0) or 
-            (whole < 0 and numerator > 0)
-        ) else 1
+        # Determine sign logic for fraction
+        whole_sign = -1 if whole < 0 else 1
+        numerator_sign = -1 if numerator < 0 else 1
+        denom_sign = -1 if denominator < 0 else 1
+        
+        # Calculate total sign
+        total_sign = whole_sign * numerator_sign * denom_sign
         
         # Convert to improper fraction
         total_numerator = abs(whole) * abs(denominator) + abs(numerator)
-        total_numerator *= sign
+        total_numerator *= total_sign
         
         # Simplify fraction
         self.numerator, self.denominator = simplify_fraction(total_numerator, abs(denominator))
