@@ -16,7 +16,7 @@ def test_reverse_string_with_spaces():
 
 def test_reverse_string_with_special_chars():
     """Test reversing a string with special characters."""
-    assert reverse_string("a1b2c3") == "3c2b1a"
+    assert reverse_string("a1b2c3!@#") == "#@!3c2b1a"
 
 def test_reverse_string_with_unicode():
     """Test reversing a string with unicode characters."""
@@ -31,4 +31,4 @@ def test_reverse_string_invalid_input():
         reverse_string(None)
     
     with pytest.raises(TypeError, match="Input must be a string"):
-        reverse_string(["hello"])
+        reverse_string(["hello"]))
