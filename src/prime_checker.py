@@ -13,13 +13,15 @@ def is_prime(number) -> bool:
     Raises:
         ValueError: If the input is not an integer.
     """
-    # Validate input type 
+    # Explicitly check for various invalid input types
+    if number is None or isinstance(number, (list, dict, set, tuple)) or isinstance(number, str):
+        raise ValueError("Input must be an integer")
+    
+    # Validate integer type and value
     try:
-        # Try to convert to an integer
+        # Attempt to convert to int, ensuring no information loss
         num = int(number)
-        
-        # Ensure the conversion was exact (no floating point or non-numeric input)
-        if not isinstance(number, (int, float)) or float(number) != num:
+        if float(number) != num:
             raise ValueError("Input must be an integer")
     except (TypeError, ValueError):
         raise ValueError("Input must be an integer")
