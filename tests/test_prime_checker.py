@@ -29,13 +29,8 @@ def test_invalid_input_type():
     with pytest.raises(TypeError):
         is_prime("7")
 
-def test_invalid_input_value():
-    """Test that non-positive numbers raise a ValueError."""
-    with pytest.raises(ValueError):
-        is_prime(1)
-    
-    with pytest.raises(ValueError):
-        is_prime(0)
-    
-    with pytest.raises(ValueError):
-        is_prime(-5)
+def test_invalid_input_handling():
+    """Test that zero and negative numbers return False."""
+    assert is_prime(0) is False, "0 should be not prime"
+    assert is_prime(-5) is False, "Negative numbers should not be prime"
+    assert is_prime(1) is False, "1 is not a prime number"
