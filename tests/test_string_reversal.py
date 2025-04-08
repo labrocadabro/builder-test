@@ -24,7 +24,7 @@ def test_reverse_string_with_special_chars():
 
 def test_reverse_string_with_mixed_characters():
     """Test reversing a string with mixed character types."""
-    assert reverse_string("H3llo, W0rld!") == "!dlr0W ,0llH3"
+    assert reverse_string("H3llo, W0rld!") == "!dlr0W ,oll3H"
 
 def test_reverse_string_invalid_input():
     """Test that a TypeError is raised for non-string inputs."""
