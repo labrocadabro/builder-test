@@ -1,4 +1,4 @@
-from src.gcd_calculator import gcd
+from src.gcd_calculator import gcd_using_prime_factors as gcd
 
 class Fraction:
     def __init__(self, numerator: int, denominator: int):
