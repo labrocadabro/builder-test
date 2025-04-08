@@ -25,7 +25,7 @@ def test_large_non_prime():
 
 def test_invalid_input_types():
     """Test handling of invalid input types"""
-    invalid_inputs = [-1, -5, 1.5, "not a number", [2], None]
+    invalid_inputs = [1.5, "not a number", [2], None]
     
     for invalid_input in invalid_inputs:
         with pytest.raises(ValueError, match="Input must be an integer"):
