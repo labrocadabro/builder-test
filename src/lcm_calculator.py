@@ -1,4 +1,4 @@
-from src.gcd_calculator import gcd
+from src.gcd_calculator import gcd_using_prime_factors
 
 def lcm(a: int, b: int) -> int:
     """
@@ -15,15 +15,6 @@ def lcm(a: int, b: int) -> int:
     
     Raises:
         ValueError: If either input is not a positive integer
-        TypeError: If inputs are not integers
     """
-    # Type checking
-    if not isinstance(a, int) or not isinstance(b, int):
-        raise TypeError("Inputs must be integers")
-    
-    # Validate positive integers
-    if a <= 0 or b <= 0:
-        raise ValueError("Inputs must be positive integers")
-    
-    # Calculate LCM using the formula: LCM(a,b) = |a * b| / GCD(a,b)
-    return abs(a * b) // gcd(a, b)
+    # Use the existing gcd implementation from the GCD calculator
+    return abs(a * b) // gcd_using_prime_factors(a, b)
