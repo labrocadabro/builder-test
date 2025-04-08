@@ -19,6 +19,12 @@ class Fraction:
         if denominator == 0:
             raise ValueError("Denominator cannot be zero")
         
+        # Special case for zero numerator
+        if numerator == 0:
+            self.numerator = 0
+            self.denominator = 1
+            return
+        
         # Determine sign
         sign = 1 if (numerator * denominator) >= 0 else -1
         
@@ -26,7 +32,11 @@ class Fraction:
         a, b = abs(numerator), abs(denominator)
         
         # Simplify fraction
-        common = gcd(a, b)
+        try:
+            common = gcd(a, b)
+        except ValueError:
+            # Fallback for zero case
+            common = 1
         
         self.numerator = sign * (a // common)
         self.denominator = b // common
