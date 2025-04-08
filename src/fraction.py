@@ -27,6 +27,12 @@ class Fraction:
         if denominator == 0:
             raise ValueError("Denominator cannot be zero")
         
+        # Special case for zero numerator
+        if numerator == 0:
+            self.numerator = 0
+            self.denominator = 1
+            return
+        
         # Determine sign
         sign = 1
         if numerator * denominator < 0:
