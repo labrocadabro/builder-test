@@ -20,7 +20,7 @@ def test_reverse_string_with_spaces():
 
 def test_reverse_string_with_special_chars():
     """Test reversal of string with special characters."""
-    assert reverse_string("H3llo, W0rld!") == "!dlr0W ,0llH3"
+    assert reverse_string("H3llo, W0rld!") == "!dlr0W ,oll3H"
 
 def test_reverse_string_invalid_input():
     """Test that TypeError is raised for non-string inputs."""
