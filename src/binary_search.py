@@ -7,7 +7,7 @@ def binary_search(arr, target):
         target: The element to search for
     
     Returns:
-        int: Index of the target element if found, -1 otherwise
+        int: Index of the FIRST occurrence of the target element if found, -1 otherwise
     
     Raises:
         TypeError: If input is not a list
@@ -25,21 +25,22 @@ def binary_search(arr, target):
     if not arr:
         return -1
     
-    # Perform binary search
+    # Perform binary search with modification to find first occurrence
     left, right = 0, len(arr) - 1
+    result = -1
     
     while left <= right:
         mid = (left + right) // 2
         
-        # Check if target is found
+        # If target is found, save the index but continue searching left
         if arr[mid] == target:
-            return mid
+            result = mid
+            right = mid - 1  # continue searching in the left half
         
         # Adjust search range
-        if arr[mid] < target:
+        elif arr[mid] < target:
             left = mid + 1
         else:
             right = mid - 1
     
-    # Target not found
-    return -1
+    return result
