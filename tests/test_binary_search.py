@@ -42,5 +42,5 @@ def test_binary_search_duplicate_elements():
     """Test binary search with duplicate elements"""
     arr = [1, 2, 2, 3, 3, 3, 4, 5]
     # Note: Returns the index of the first occurrence
-    assert binary_search(arr, 3) in [4, 5]
-    assert binary_search(arr, 2) in [1, 2]
+    assert binary_search(arr, 3) == 3  # First occurrence of 3
+    assert binary_search(arr, 2) == 1  # First occurrence of 2
