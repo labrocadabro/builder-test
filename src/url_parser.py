@@ -20,19 +20,17 @@ def parse_url(url: str) -> Dict[str, Any]:
         raise ValueError("Invalid URL: URL must be a non-empty string")
 
     try:
-        # Initialize default variables for original input
+        # Initialize default variables
         original_scheme = None
         original_netloc = ''
 
         # If no scheme is present, prepend 'http://' for proper parsing
         if '://' not in url:
-            url = 'http://' + url
+            parsed_url = urlparse('http://' + url)
             original_scheme = None
         else:
-            original_scheme = url.split('://')[0]
-
-        # Use urlparse to break down the URL
-        parsed_url = urlparse(url)
+            parsed_url = urlparse(url)
+            original_scheme = parsed_url.scheme
 
         # Extract query parameters using parse_qs
         query_params = parse_qs(parsed_url.query)
@@ -40,20 +38,26 @@ def parse_url(url: str) -> Dict[str, Any]:
         # Flatten single-item lists in query parameters
         query_params = {k: v[0] if len(v) == 1 else v for k, v in query_params.items()}
 
-        # Determine the path, removing the automatically added 'http://' if it was prepended
-        path = parsed_url.path
-        if not original_scheme and parsed_url.path.startswith('/http://'):
-            path = parsed_url.path.replace('/http://', '/', 1)
+        # Determine the path
+        if '://' not in url:
+            # For URLs without scheme, adjust path
+            parts = url.split('/')
+            path = '/' + '/'.join(parts[1:]) if len(parts) > 1 else None
+        else:
+            path = parsed_url.path or None
 
-        # Handle netloc for URLs without scheme
-        if not original_scheme:
-            original_netloc = '' if parsed_url.netloc == url else parsed_url.netloc
+        # Determine netloc
+        if '://' not in url:
+            # For URLs without scheme, set netloc to empty string
+            original_netloc = ''
+        else:
+            original_netloc = parsed_url.netloc
 
         # Construct and return a comprehensive URL information dictionary
         return {
             'scheme': original_scheme,
             'netloc': original_netloc,
-            'path': path or None,
+            'path': path,
             'params': parsed_url.params or None,
             'query': query_params,
             'fragment': parsed_url.fragment or None,
