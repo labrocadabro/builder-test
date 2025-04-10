@@ -39,9 +39,9 @@ def test_binary_search_invalid_input():
 def test_binary_search_duplicates():
     """Test binary search with duplicate elements"""
     arr = [1, 2, 2, 3, 3, 3, 4, 5]
-    # Note: returns the index of one of the duplicate elements
-    assert binary_search(arr, 3) in [4, 5, 6]
-    assert binary_search(arr, 2) in [1, 2]
+    # Note: returns the index of the first occurrence of the duplicate elements
+    assert binary_search(arr, 3) == 3
+    assert binary_search(arr, 2) == 1
 
 def test_binary_search_negative_numbers():
     """Test binary search with negative numbers"""
