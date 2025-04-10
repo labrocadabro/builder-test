@@ -20,9 +20,16 @@ def parse_url(url: str) -> Dict[str, Any]:
         raise ValueError("Invalid URL: URL must be a non-empty string")
 
     try:
+        # Initialize default variables for original input
+        original_scheme = None
+        original_netloc = ''
+
         # If no scheme is present, prepend 'http://' for proper parsing
         if '://' not in url:
             url = 'http://' + url
+            original_scheme = None
+        else:
+            original_scheme = url.split('://')[0]
 
         # Use urlparse to break down the URL
         parsed_url = urlparse(url)
@@ -35,13 +42,17 @@ def parse_url(url: str) -> Dict[str, Any]:
 
         # Determine the path, removing the automatically added 'http://' if it was prepended
         path = parsed_url.path
-        if not parsed_url.scheme and parsed_url.path.startswith('/http://'):
+        if not original_scheme and parsed_url.path.startswith('/http://'):
             path = parsed_url.path.replace('/http://', '/', 1)
+
+        # Handle netloc for URLs without scheme
+        if not original_scheme:
+            original_netloc = '' if parsed_url.netloc == url else parsed_url.netloc
 
         # Construct and return a comprehensive URL information dictionary
         return {
-            'scheme': None if not parsed_url.scheme or parsed_url.scheme == 'http' else parsed_url.scheme,
-            'netloc': parsed_url.netloc or None,
+            'scheme': original_scheme,
+            'netloc': original_netloc,
             'path': path or None,
             'params': parsed_url.params or None,
             'query': query_params,
