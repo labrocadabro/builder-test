@@ -1,4 +1,5 @@
 from src.prime_factorization import prime_factorization
+from collections import Counter
 
 def gcd_using_prime_factors(a: int, b: int) -> int:
     """
@@ -19,8 +20,8 @@ def gcd_using_prime_factors(a: int, b: int) -> int:
         raise ValueError("Inputs must be positive integers")
     
     # Get prime factorizations of both numbers
-    a_factors = prime_factorization(a)
-    b_factors = prime_factorization(b)
+    a_factors = Counter(prime_factorization(a))
+    b_factors = Counter(prime_factorization(b))
     
     # Find common prime factors
     gcd = 1
