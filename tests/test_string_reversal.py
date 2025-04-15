@@ -19,8 +19,13 @@ def test_reverse_string_with_spaces():
     assert reverse_string("hello world") == "dlrow olleh"
 
 def test_reverse_string_with_punctuation():
-    """Test reversal of string with punctuation."""
+    """Test reversal of string with punctuation and mixed characters."""
     assert reverse_string("hello, world!") == "!dlrow ,olleh"
+    assert reverse_string("a1b2c3") == "3c2b1a"
+
+def test_reverse_string_with_unicode():
+    """Test reversal of string with unicode characters."""
+    assert reverse_string("café") == "éfac"
 
 def test_reverse_string_invalid_input():
     """Test that a TypeError is raised for non-string inputs."""
