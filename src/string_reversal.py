@@ -1,6 +1,6 @@
 def reverse_string(s: str) -> str:
     """
-    Reverse the given string.
+    Reverse the given string manually, preserving all characters.
 
     Args:
         s (str): The input string to be reversed.
@@ -11,9 +11,13 @@ def reverse_string(s: str) -> str:
     Raises:
         TypeError: If the input is not a string.
     """
-    # Check if input is a string
+    # Validate input is a string
     if not isinstance(s, str):
         raise TypeError("Input must be a string")
     
-    # Reverse the string
-    return s[::-1]
+    # Manual string reversal using list conversion and joining
+    reversed_chars = []
+    for i in range(len(s) - 1, -1, -1):
+        reversed_chars.append(s[i])
+    
+    return ''.join(reversed_chars)
